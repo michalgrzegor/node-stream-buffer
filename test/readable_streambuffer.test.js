@@ -45,7 +45,7 @@ describe('A default ReadableStreamBuffer', function() {
     var that = this;
     var str = '';
     this.buffer.on('readable', function() {
-      str += (that.buffer.read() || new Buffer(0)).toString('utf8');
+      str += (that.buffer.read() || Buffer.alloc(0)).toString('utf8');
     });
     this.buffer.on('end', function() {
       expect(str).to.equal(fixtures.unicodeString);
@@ -59,7 +59,7 @@ describe('A default ReadableStreamBuffer', function() {
     var that = this;
     var str = '';
     this.buffer.on('readable', function() {
-      str += (that.buffer.read() || new Buffer(0)).toString('utf8');
+      str += (that.buffer.read() || Buffer.alloc(0)).toString('utf8');
     });
     this.buffer.on('end', function() {
       expect(str).to.equal(fixtures.unicodeString);
@@ -102,7 +102,7 @@ describe('A default ReadableStreamBuffer', function() {
       expect(buf[1]).to.equal(239);
       done();
     });
-  })
+  });
 
   describe('when writing binary data larger than initial backing buffer size', function() {
     beforeEach(function() {
